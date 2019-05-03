@@ -10,7 +10,7 @@
                 <v-spacer></v-spacer>
                 <v-tooltip bottom>
                   <template v-slot:activator="{ on }">
-                    <v-btn :href="source" icon large target="_blank" v-on="on">
+                    <v-btn icon large target="_blank" v-on="on">
                       <v-icon large>code</v-icon>
                     </v-btn>
                   </template>
@@ -27,8 +27,8 @@
               </v-toolbar>
               <v-card-text>
                 <v-form>
-                  <v-text-field prepend-icon="person" name="login" label="Login" type="text" v-model=username></v-text-field>
-                  <v-text-field id="password" prepend-icon="lock" name="password" label="Password" type="password" v-model=password></v-text-field>
+                  <v-text-field id="username" prepend-icon="person" name="login" label="Login" type="text" v-model="username"></v-text-field>
+                  <v-text-field id="password" prepend-icon="lock" name="password" label="Password" type="password" v-model="password"></v-text-field>
                 </v-form>
               </v-card-text>
               <v-card-actions>
@@ -61,10 +61,17 @@ export default {
   methods: {
     greet: function (event) {
       // `this` inside methods points to the Vue instance
-      axios.post('http://api.kalbuqu.com/users/login')
-      ("username",
-      "password")
-      }
+      axios.post('http://api.kalbuqu.com/',{
+        username: this.username,
+        password: this.password
+      })
+      .then(function (event) {
+      console.log(event);
+      })
+      .catch(function (error) {
+      console.log(error);
+      });
     }
   }
+}
 </script>
