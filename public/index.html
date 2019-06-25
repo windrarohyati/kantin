@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>kantin berkah</title>
+  </head>
+  <body>
+    <h1>aplikasi pembayaran di kantin</h1>
+          <!-- The core Firebase JS SDK is always required and must be listed first -->
+          <script src="https://www.gstatic.com/firebasejs/6.0.1/firebase-app.js"></script>
+
+          <!-- TODO: Add SDKs for Firebase products that you want to use
+              https://firebase.google.com/docs/web/setup#config-web-app -->
+
+          <script>
+            // Your web app's Firebase configuration
+            var firebaseConfig = {
+              apiKey: "AIzaSyAWPcbSnalo2i1fYdJkGOtAHVLzYLkZI_k",
+              authDomain: "project-be3d9.firebaseapp.com",
+              databaseURL: "https://project-be3d9.firebaseio.com",
+              projectId: "project-be3d9",
+              storageBucket: "project-be3d9.appspot.com",
+              messagingSenderId: "6731760014",
+              appId: "1:6731760014:web:85d8a5adf06c4976"
+            };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+
+            // Get a reference to the database service
+            var db = firebase.database();
+            console.log(db)
+            var produkRef = db.ref('produk');
+
+            produkRef.on('value', showData, showError);
+
+            produkRef.on('child_added', userAdded);
+
+            function showData(items) {
+              console.log('items.val() + .name')
+            }
+            function showError(err) {
+              console.log('err')
+            }
+          </script> 
+    </body>
+</html>
